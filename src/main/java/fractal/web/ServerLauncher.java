@@ -22,11 +22,12 @@ public class ServerLauncher {
 		handlerList.addHandler(resourceHandler);
 		WebAppContext webAppContext = new WebAppContext();
 		webAppContext.setContextPath("/");
+		webAppContext.setResourceBase("src/main/webapp");
 		webAppContext.setConfigurations(new Configuration[] {
-			new AnnotationConfiguration()
+			new AnnotationConfiguration(),
+			new WebInfConfiguration()
 		});
-		webAppContext.setAttribute(WebInfConfiguration.CONTAINER_JAR_PATTERN,
-			".*/org\\.eclipse\\.xtext\\.web.*,.*/org.webjars.*");
+		webAppContext.setAttribute(WebInfConfiguration.CONTAINER_JAR_PATTERN, ".*fractal.*");
 		handlerList.addHandler(webAppContext);
 		server.setHandler(handlerList);
 		Slf4jLog log = new Slf4jLog(ServerLauncher.class.getName());
