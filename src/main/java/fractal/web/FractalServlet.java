@@ -21,7 +21,8 @@ public class FractalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setStatus(HttpServletResponse.SC_OK);
 		resp.setContentType("image/png");
-		RenderedImage image = renderer.render(200, 100);
+		FractalOptions options = new FractalOptions();
+		RenderedImage image = renderer.render(options);
 		ImageIO.write(image, "png", resp.getOutputStream());	
 	}
 
